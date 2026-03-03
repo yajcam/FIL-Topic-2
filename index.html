@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>FIL</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEC 12: Masining na Pagpapahayag - Interactive Notes</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables for Consistent Theming */
+        :root {
+            --primary-blue: #1e3a5f;
+            --primary-red: #c41e3a;
+            --accent-gold: #d4af37;
+            --accent-cream: #faf8f3;
+            --text-dark: #1a1a2e;
+            --text-muted: #5a5a6e;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --shadow-soft: 0 8px 32px rgba(31, 38, 135, 0.07);
+            --shadow-hover: 0 20px 60px rgba(31, 38, 135, 0.15);
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-warm: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-warm);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(196, 30, 58, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Header Styling */
+        header {
+            position: relative;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .header-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-red) 50%, var(--accent-gold) 100%);
+        }
+
+        .course-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(196, 30, 58, 0.1);
+            border-radius: 50px;
+            border: 1px solid rgba(196, 30, 58, 0.2);
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-muted);
+            position: relative;
+            display: inline-block;
+        }
+
+        .subtitle::before,
+        .subtitle::after {
+            content: '"';
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0 1rem;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 0.875rem 1.5rem;
+            border: none;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            color: var(--primary-blue);
+        }
+
+        .nav-item.active {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 10px 30px rgba(30, 58, 95, 0.3);
+        }
+
+        .nav-item.active:hover {
+            color: white;
+        }
+
+        .nav-item i {
+            font-size: 0.875rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        .content-wrapper {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            padding: 3rem;
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(30, 58, 95, 0.1);
+        }
+
+        .section-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .section-icon.blue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .section-icon.red { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .section-icon.gold { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .section-icon.purple { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: var(--primary-blue); }
+        .section-icon.dark { background: linear-gradient(135deg, #2c3e50 0%, #4a6741 100%); }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        /* Quote Blocks */
+        .quote-block {
+            position: relative;
+            padding: 2rem 2rem 2rem 3rem;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.05) 0%, rgba(30, 58, 95, 0.02) 100%);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-gold);
+            font-style: italic;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .quote-block::before {
+            content: '"';
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--card-accent, var(--primary-blue));
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--card-accent, var(--primary-blue));
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.375rem 0.875rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--card-accent, var(--primary-blue));
+        }
+
+        .example-box strong {
+            color: var(--card-accent, var(--primary-blue));
+        }
+
+        /* Comparison Layout */
+        .comparison-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-box {
+            padding: 1.25rem;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .comparison-box.wrong {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border: 1px solid #feb2b2;
+        }
+
+        .comparison-box.correct {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            border: 1px solid #9ae6b4;
+        }
+
+        .comparison-box .label {
+            font-size: 0.625rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .comparison-box.wrong .label { color: #c53030; }
+        .comparison-box.correct .label { color: #22543d; }
+
+        .strike { text-decoration: line-through; opacity: 0.6; }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        .feature-card p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .word-list {
+            background: #f8f9fa;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Euphemism Cards */
+        .euphemism-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .euphemism-card {
+            background: #f8f9fa;
+            padding: 1.25rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--card-accent, var(--primary-blue));
+        }
+
+        .euphemism-card .instead {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .euphemism-card .bad-word {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9375rem;
+        }
+
+        .euphemism-card .good-word {
+            font-weight: 700;
+            color: var(--card-accent, var(--primary-blue));
+            font-size: 1.1rem;
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        /* Connotation Types */
+        .connotation-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--item-color, var(--primary-blue));
+            transition: all 0.3s ease;
+        }
+
+        .connotation-item:hover {
+            transform: translateX(5px);
+        }
+
+        .connotation-item h4 {
+            color: var(--item-color, var(--primary-blue));
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .connotation-item .number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--item-color, var(--primary-blue));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+
+        .connotation-item .example {
+            background: rgba(0,0,0,0.03);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 0.75rem;
+            font-style: italic;
+            color: var(--text-dark);
+        }
+
+        /* Subject-Predicate Visual */
+        .sp-visual {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+        }
+
+        .sp-sentence {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .sp-part {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin: 0 0.25rem;
+            font-weight: 600;
+        }
+
+        .sp-part.subject {
+            background: rgba(30, 58, 95, 0.15);
+            color: var(--primary-blue);
+        }
+
+        .sp-part.predicate {
+            background: rgba(196, 30, 58, 0.15);
+            color: var(--primary-red);
+        }
+
+        .sp-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.875rem;
+        }
+
+        .sp-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #2c5282 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .info-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-box p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Lists */
+        .check-list {
+            list-style: none;
+            space-y: 0.75rem;
+        }
+
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.5);
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+        }
+
+        .check-list i {
+            color: #48bb78;
+            margin-top: 0.25rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tab-content {
+                padding: 1.5rem;
+            }
+            
+            .comparison-pair {
+                grid-template-columns: 1fr;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                gap: 0.5rem;
+            }
+            
+            .nav-item {
+                padding: 0.625rem 1rem;
+                font-size: 0.8125rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .nav-item { display: none; }
+            .tab-content { display: block !important; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-accent"></div>
+    
+    <header>
+        <span class="course-label">General Education Course 12</span>
+        <h1>Masining na Pagpapahayag</h1>
+        <p class="subtitle">Ang bawat salita ay may tiyak na kahulugan.</p>
+    </header>
+
+    <nav>
+        <button onclick="showTab('layunin')" id="btn-layunin" class="nav-item active">
+            <i class="fas fa-bullseye"></i> Layunin
+        </button>
+        <button onclick="showTab('gramatika')" id="btn-gramatika" class="nav-item">
+            <i class="fas fa-spell-check"></i> Kawastuhan
+        </button>
+        <button onclick="showTab('pagpili')" id="btn-pagpili" class="nav-item">
+            <i class="fas fa-hand-pointer"></i> Pagpili
+        </button>
+        <button onclick="showTab('kahulugan')" id="btn-kahulugan" class="nav-item">
+            <i class="fas fa-book-open"></i> Kahulugan
+        </button>
+        <button onclick="showTab('pangungusap')" id="btn-pangungusap" class="nav-item">
+            <i class="fas fa-quote-right"></i> Pangungusap
+        </button>
+    </nav>
+
+    <div class="container">
+        <div class="content-wrapper">
+            
+            <!-- TAB 1: LAYUNIN -->
+            <section id="layunin" class="tab-content active">
+                <div class="section-header">
+                    <div class="section-icon blue"><i class="fas fa-flag"></i></div>
+                    <h2>Mga Layunin</h2>
+                </div>
+                
+                <div class="quote-block">
+                    Sa pagtatapos ng aralin, ang mag-aaral ay inaasahang:
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card" style="--card-accent: #1e3a5f;">
+                        <span class="tag" style="background: rgba(30,58,95,0.1); color: #1e3a5f;">01</span>
+                        <h3>Nabibigyang Diin</h3>
+                        <p>Ang kahulugan at pagpili ng wastong salita.</p>
+                    </div>
+                    <div class="card" style="--card-accent: #c41e3a;">
+                        <span class="tag" style="background: rgba(196,30,58,0.1); color: #c41e3a;">02</span>
+                        <h3>Naiwawasto</h3>
+                        <p>Ang mga gamit ng mga salita.</p>
+                    </div>
+                    <div class="card" style="--card-accent: #d4af37;">
+                        <span class="tag" style="background: rgba(212,175,55,0.1); color: #b8860b;">03</span>
+                        <h3>Nakabubuo</h3>
+                        <p>Ng mga pangungusap.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: GRAMATIKA -->
+            <section id="gramatika" class="tab-content">
+                <div class="section-header">
+                    <div class="section-icon red"><i class="fas fa-pen-nib"></i></div>
+                    <h2>Kawastuhang Panggramatika</h2>
+                </div>
+
+                <div class="quote-block">
+                    Ang bawat salita ay may tiyak na kahulugan. Maaaring magbago ang kahulugan ng isang pahayag kung mali ang ginamit na salita.
+                </div>
+
+                <div class="cards-grid">
+                    <!-- NG vs NANG -->
+                    <div class="card" style="--card-accent: #3182ce;">
+                        <h3>NG at NANG</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span class="tag" style="background: #bee3f8; color: #2c5282;">NG</span>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Bilang katumbas ng 'of' ng Ingles."</p>
+                            <div class="example-box" style="--card-accent: #3182ce;">
+                                "Si Mrs. Laila ang punong-guro <strong>ng</strong> aming eskwelahan."
+                            </div>
+                        </div>
+                        <div>
+                            <span class="tag" style="background: #fed7d7; color: #c53030;">NANG</span>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Katumbas ng 'when' o 'so that'."</p>
+                            <div class="example-box" style="--card-accent: #e53e3e;">
+                                "Paalis kami ng bahay <strong>nang</strong> dumating si Tina."<br>
+                                "Gumising <strong>nang</strong> maaga si Nena."
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KUNG vs KONG -->
+                    <div class="card" style="--card-accent: #38a169;">
+                        <h3>KUNG at KONG</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span class="tag" style="background: #c6f6d5; color: #22543d;">KUNG</span>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Pangatnig na panubali (if)."</p>
+                            <div class="example-box" style="--card-accent: #38a169;">
+                                "<strong>Kung</strong> siya'y narito, tayo'y magiging masaya."
+                            </div>
+                        </div>
+                        <div>
+                            <span class="tag" style="background: #fefcbf; color: #744210;">KONG</span>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Panghalip panao (paari)."</p>
+                            <div class="example-box" style="--card-accent: #d69e2e;">
+                                "Nawala ang hiniram <strong>kong</strong> aklat."
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DAW vs RAW -->
+                    <div class="card" style="--card-accent: #805ad5;">
+                        <h3>DAW at RAW</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span class="tag" style="background: #e9d8fd; color: #553c9a;">DAW/DIN</span>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Kapag nagtatapos sa <strong>katinig</strong>."</p>
+                            <div class="example-box" style="--card-accent: #805ad5;">
+                                "May kainan <strong>daw</strong> sa baba."
+                            </div>
+                        </div>
+                        <div>
+                            <span class="tag" style="background: #fed7e2; color: #97266d;">RAW/RIN</span>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Kapag nagtatapos sa <strong>patinig</strong>."</p>
+                            <div class="example-box" style="--card-accent: #d53f8c;">
+                                "Sasama <strong>raw</strong> siya sa atin."
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SINA vs SILA -->
+                    <div class="card" style="--card-accent: #dd6b20;">
+                        <h3>SINA at SILA</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span class="tag" style="background: #feebc8; color: #7c2d12;">SINA</span>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Panandang kayarian (pangalan)."</p>
+                            <div class="example-box" style="--card-accent: #dd6b20;">
+                                "Kasali <strong>sina</strong> Jose at Laurito..."
+                            </div>
+                        </div>
+                        <div>
+                            <span class="tag" style="background: #e2e8f0; color: #1a202c;">SILA</span>
+                            <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Panghalip na panao."</p>
+                            <div class="example-box" style="--card-accent: #718096;">
+                                "<strong>Sila</strong> ay nagtagumpay..."
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAHIRIN vs PAHIRAN -->
+                    <div class="card" style="--card-accent: #319795; grid-column: 1 / -1;">
+                        <h3>PAHIRIN at PAHIRAN</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div>
+                                <span class="tag" style="background: #b2f5ea; color: #234e52;">PAHIRIN</span>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Pagtanggal o pagpawis (wipe off)."</p>
+                                <div class="example-box" style="--card-accent: #319795;">
+                                    "<strong>Pahirin</strong> mo ang iyong pawis bago ka magpalit ng damit."
+                                </div>
+                            </div>
+                            <div>
+                                <span class="tag" style="background: #c3dafe; color: #3c366b;">PAHIRAN</span>
+                                <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0;">"Paglalagay ng bagay (to apply)."</p>
+                                <div class="example-box" style="--card-accent: #4c51bf;">
+                                    "<strong>Pahiran</strong> mo ng ointment ang iyong sugat."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: PAGPILI -->
+            <section id="pagpili" class="tab-content">
+                <div class="section-header">
+                    <div class="section-icon gold"><i class="fas fa-gem"></i></div>
+                    <h2>Tamang Pagpili ng Salita</h2>
+                </div>
+
+                <div class="quote-block">
+                    Sa larangan ng pagpapahayag, ang mga salita ay mabisang kasangkapan sa komunikasyon. Subalit upang maisakatuparan ang isang espesipikong layunin, <strong>kailangang maingat na piliin ang mga ito</strong>.
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%); color: #22543d;">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>LIKAS</h4>
+                        <p>Salitang katutubo</p>
+                        <div class="word-list">araw, buwan, ilong, isda, kami, tayo, lupa, amain, aso, dagat, aklat, pusa</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #e9d8fd 0%, #d6bcfa 100%); color: #553c9a;">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h4>LIKHA</h4>
+                        <p>Gawa o inimbento</p>
+                        <div class="word-list">telebabad, kapamilya, kapuso, tapsilog</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #feebc8 0%, #fbd38d 100%); color: #7c2d12;">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h4>HIRAM/HANGO</h4>
+                        <p>Hiram sa dayuhang wika</p>
+                        <div class="word-list">dyip, lektyur, bakgrawnd, kontiks, hayskul</div>
+                    </div>
+                </div>
+
+                <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--primary-blue);">Halimbawa (Mali vs Wasto)</h3>
+                
+                <div class="comparison-pair">
+                    <div class="comparison-box wrong">
+                        <span class="label">Mali</span>
+                        <p>"Tanaw na tanaw na namin ang maluwang na <span class="strike">bibig</span> ng bulkan."</p>
+                    </div>
+                    <div class="comparison-box correct">
+                        <span class="label">Wasto</span>
+                        <p>"Tanaw na tanaw na namin ang maluwang na <strong>bunganga</strong> ng bulkan."</p>
+                    </div>
+                </div>
+
+                <div class="comparison-pair">
+                    <div class="comparison-box wrong">
+                        <span class="label">Mali</span>
+                        <p>"Bagay kay Olga ang kanyang makipot na <span class="strike">bunganga</span>."</p>
+                    </div>
+                    <div class="comparison-box correct">
+                        <span class="label">Wasto</span>
+                        <p>"Bagay kay Olga ang kanyang makipot na <strong>bibig</strong>."</p>
+                    </div>
+                </div>
+
+                <div class="comparison-pair">
+                    <div class="comparison-box wrong">
+                        <span class="label">Mali</span>
+                        <p>"Ginanahan sa <span class="strike">paglamon</span> ang mga bagong dating na bisita."</p>
+                    </div>
+                    <div class="comparison-box correct">
+                        <span class="label">Wasto</span>
+                        <p>"Ginanahan sa <strong>pagkain</strong> ang mga bagong dating na bisita."</p>
+                    </div>
+                </div>
+
+                <div class="card" style="--card-accent: var(--primary-blue); margin-top: 2rem;">
+                    <h3><i class="fas fa-feather-alt" style="color: var(--accent-gold); margin-right: 0.5rem;"></i>Eupemismo (Paglumanay)</h3>
+                    <p style="margin-bottom: 1rem; color: var(--text-muted);">Paggamit ng mas "magaan" o mas "magalang" na salita.</p>
+                    <div class="euphemism-grid">
+                        <div class="euphemism-card" style="--card-accent: #1e3a5f;">
+                            <div class="instead">Imbes na:</div>
+                            <div class="bad-word">namatay</div>
+                            <div class="good-word">namayapa</div>
+                        </div>
+                        <div class="euphemism-card" style="--card-accent: #c41e3a;">
+                            <div class="instead">Imbes na:</div>
+                            <div class="bad-word">kubeta</div>
+                            <div class="good-word">palikuran</div>
+                        </div>
+                        <div class="euphemism-card" style="--card-accent: #d4af37;">
+                            <div class="instead">Imbes na:</div>
+                            <div class="bad-word">ginahasa</div>
+                            <div class="good-word">pinagsamantalahan</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: KAHULUGAN -->
+            <section id="kahulugan" class="tab-content">
+                <div class="section-header">
+                    <div class="section-icon purple"><i class="fas fa-layer-group"></i></div>
+                    <h2>Paggamit ng Salita Ayon sa Kahulugan</h2>
+                </div>
+
+                <div class="card" style="--card-accent: #6b46c1; margin-bottom: 2rem;">
+                    <h3>Halimbawa: AHAS</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                        <div style="padding: 1.5rem; background: #f7fafc; border-radius: 12px;">
+                            <h4 style="color: #4a5568; margin-bottom: 0.5rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Denotasyon</h4>
+                            <p>Direktang/literal na kahulugan (reptil na ahas).</p>
+                        </div>
+                        <div style="padding: 1.5rem; background: #e9d8fd; border-radius: 12px; border: 1px solid #d6bcfa;">
+                            <h4 style="color: #6b46c1; margin-bottom: 0.5rem; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Konotasyon</h4>
+                            <p>Mas malalim na kahulugan (taksil o mapanlinlang).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-blue);">Uri ng Konotasyon</h3>
+
+                <div class="connotation-item" style="--item-color: #d53f8c;">
+                    <h4><span class="number">1</span> Idyomatikong Pahayag</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">"Hindi literal."</p>
+                    <div class="example">
+                        "Siya ay palaging nasasaktan dahil sa kanyang <strong>pusong mamon</strong>."
+                    </div>
+                </div>
+
+                <div class="connotation-item" style="--item-color: #d69e2e;">
+                    <h4><span class="number">2</span> Patayutay na Pananalita</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">"Palihis na paraan upang gawing kaakit-akit."</p>
+                    <div class="example">
+                        "Siya ay <strong>kasingningning ng mga bituin</strong>."
+                    </div>
+                </div>
+
+                <div class="connotation-item" style="--item-color: #38a169;">
+                    <h4><span class="number">3</span> Eupemistikong Pananalita</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">"Pinapalit sa masakit na salita."</p>
+                    <div class="example">
+                        "Sadyang <strong>kapos sa buhay</strong> ang pamilya ni Lou." / "Labis ka nang <strong>malusog</strong> kaya di na kasya ang damit mo."
+                    </div>
+                </div>
+
+                <div class="connotation-item" style="--item-color: #805ad5;">
+                    <h4><span class="number">4</span> Makulay o Masining na Pananalita</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9375rem;">"Ginagamit ng mga makata."</p>
+                    <div class="example">
+                        "<strong>Pasan ko ang Daigdig</strong>."
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: PANGUNGUSAP -->
+            <section id="pangungusap" class="tab-content">
+                <div class="section-header">
+                    <div class="section-icon dark"><i class="fas fa-quote-right"></i></div>
+                    <h2>Pangungusap at Iba Pa</h2>
+                </div>
+
+                <div class="card" style="--card-accent: var(--primary-blue); margin-bottom: 2rem;">
+                    <p style="font-size: 1.125rem; margin-bottom: 1.5rem; font-style: italic; color: var(--text-dark);">
+                        "Ang pangungusap ay ang pinakamaliit na unit ng wika na naglalaman ng isang buong diwa o kaisipan."
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="padding: 1.25rem; background: rgba(30,58,95,0.05); border-radius: 12px; border-left: 4px solid var(--primary-blue);">
+                            <h4 style="color: var(--primary-blue); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Paksa (Subject)</h4>
+                            <p style="font-size: 0.9375rem;">Bahaging pinagtutuunan ng pansin.</p>
+                        </div>
+                        <div style="padding: 1.25rem; background: rgba(196,30,58,0.05); border-radius: 12px; border-left: 4px solid var(--primary-red);">
+                            <h4 style="color: var(--primary-red); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">Panaguri (Predicate)</h4>
+                            <p style="font-size: 0.9375rem;">Bahaging nagbibigay paliwanag tungkol sa paksa.</p>
+                        </div>
+                    </div>
+
+                    <div class="sp-visual">
+                        <div class="sp-sentence">
+                            <span class="sp-part subject">Ang edukasyon</span>
+                            <span class="sp-part predicate">ang susi tungo sa maunlad na bansa.</span>
+                        </div>
+                        <div class="sp-legend">
+                            <div class="sp-legend-item">
+                                <div class="dot" style="background: var(--primary-blue);"></div>
+                                <span>Paksa</span>
+                            </div>
+                            <div class="sp-legend-item">
+                                <div class="dot" style="background: var(--primary-red);"></div>
+                                <span>Panaguri</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div class="card" style="--card-accent: #38a169;">
+                        <h3>Sangkap ng Epektibong Pagpapahayag</h3>
+                        <ul class="check-list">
+                            <li><i class="fas fa-check-circle"></i> <div><strong>Maingat na pagpili</strong> sa mga gamit ng salita (diksyon)</div></li>
+                            <li><i class="fas fa-check-circle"></i> <div><strong>Matalinong pag-aayos</strong> ng mga gamit ng salita (grammar at sintaks)</div></li>
+                            <li><i class="fas fa-check-circle"></i> <div><strong>Malinaw na naipapakita</strong> ang relasyon (clarity and connectivity)</div></li>
+                        </ul>
+                    </div>
+                    <div class="card" style="--card-accent: #805ad5;">
+                        <h3>Mga Uri ng Pangungusap</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem;">
+                            <div style="padding: 1rem; background: #f7fafc; border-radius: 10px; text-align: center; font-weight: 600; color: var(--primary-blue);">Pasasalaysay</div>
+                            <div style="padding: 1rem; background: #f7fafc; border-radius: 10px; text-align: center; font-weight: 600; color: var(--primary-blue);">Patanong</div>
+                            <div style="padding: 1rem; background: #f7fafc; border-radius: 10px; text-align: center; font-weight: 600; color: var(--primary-blue);">Pautos/Pakiusap</div>
+                            <div style="padding: 1rem; background: #f7fafc; border-radius: 10px; text-align: center; font-weight: 600; color: var(--primary-blue);">Padamdam</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3><i class="fas fa-info-circle"></i> Pagbabantas</h3>
+                    <p style="font-style: italic; margin-bottom: 0.75rem;">"Sistema o pamamaraan ng paggamit ng pananda upang ang kahulugan ng nagsusulat ng pahayag ay nagiging malinaw sa mambabasa."</p>
+                    <p style="font-size: 0.9375rem; opacity: 0.9;">Ang bantas ay gabay para maging malinaw ang daloy at kahulugan ng pahayag.</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.875rem;">
+        <p>GEC 12 Interactive Notes &copy; 2026 | Masining na Pagpapahayag</p>
+    </footer>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update buttons
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
